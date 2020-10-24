@@ -127,14 +127,35 @@ body{
     color: #66B032;
 }
 /*Footer End*/
+/* slider caption start */
+// CSS 
 
+.item{
+    position: relative;
+}
+.item .slide-caption {
+    position: absolute;
+    bottom: 5%;
+    width: 80%;
+    overflow: hidden;
+    left: 50%;
+    background: rgba(0,0,0,0.4);
+    transform: translateX(-50%);
+    text-align: center;
+    border-radius: 10px;
+    color: #fff;
+    padding-top: 15px;
+}
+/* slider caption end */
 /*Owl carosel start*/
 .owl-carousel{
     margin: auto !important;
 }
 .owl-carousel .item img{
     cursor: pointer;
+    position: relative;
 }
+
 .owl-dot {
     width: 14px;
     height: 14px;
@@ -186,3 +207,4 @@ body{
     outline-style: none !important;
 }
 /*Owl carosel End*/
+
