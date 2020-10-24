@@ -3,14 +3,11 @@
     <div class="row footer">
         <div class="col-12">
         <p class="pt-2 mb-2 text-center">Copyright &copy; <a class="footer-link" href="">@if(isset($footer)){{$footer->copyright}}@else Owner @endif</a> || Developed  by:
-                <a class="footer-link" href="https://github.com/alamgirweb11">Alamgir Hosen</a></p>
+            <a class="footer-link" href="https://github.com/alamgirweb11">Alamgir Hosen</a></p>
         </div>
     </div>
 </footer>
 <!--Footer End-->
-
-    <!--    jQuery-->
-    <script src="{{asset('/admin/assets/js/jquery-3.3.1.slim.min.js')}}"></script>
     <!--    magnific popup-->
     <script src="{{asset('/admin/assets/plugins/magnific-popup/js/jquery.magnific-popup.min.js')}}"></script>
     <!--    Carousel-->

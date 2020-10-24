@@ -25,6 +25,10 @@
     <link rel="stylesheet" href="{{asset('/admin/assets/css/style.css')}}">
     <!--    Favicon-->
     <link rel="shortcut icon" href="{{asset('/admin/assets/images/favicon.png')}}" type="image/x-icon">
+      <!--    jQuery-->
+      {{-- <script src="{{asset('/admin/assets/js/jquery-3.3.1.slim.min.js')}}"></script> --}}
+      <script src="{{asset('/admin/assets/js/jquery-3.4.1.js')}}"></script>
+      {{-- <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script> --}}
 </head>
 <body>
 <!--Header Start-->
@@ -88,24 +92,24 @@
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">School</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Add School</a></li>
-                            <li><a href="#" class="dropdown-item">School List</a></li>
+                        <li><a href="{{route('add-school')}}" class="dropdown-item">Add School</a></li>
+                            <li><a href="{{route('school-list')}}" class="dropdown-item">School List</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">Class</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Add Class</a></li>
-                            <li><a href="#" class="dropdown-item">Class List</a></li>
+                            <li><a href="{{route('add-class')}}" class="dropdown-item">Add Class</a></li>
+                            <li><a href="{{route('class-list')}}" class="dropdown-item">Class List</a></li>
                         </ul>
                     </li>
 
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">Batch</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Add Batch</a></li>
-                            <li><a href="#" class="dropdown-item">Batch List</a></li>
+                            <li><a href="{{route('add-batch')}}" class="dropdown-item">Add Batch</a></li>
+                            <li><a href="{{route('batch-list')}}" class="dropdown-item">Batch List</a></li>
                         </ul>
                     </li>
 
