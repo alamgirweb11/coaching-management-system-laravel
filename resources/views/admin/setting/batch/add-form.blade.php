@@ -7,14 +7,7 @@
         <div class="row content">
             <div class="col-md-8 offset-md-2 pl-0 pr-0">
 
-                @if(Session::get('message'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Message : </strong> {{ Session::get('message') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
+                @include('admin.includes.alert')
 
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -38,6 +31,22 @@
                                                 @endforeach
                                              </select>
                                             @error('class_id')
+                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="form-group row mb-0">
+                                        <label for="typeId" class="col-form-label col-sm-3 text-right">Student-Type/Course</label>
+                                        <div class="col-sm-9">
+                                             <select name="type_id" id="typeId" class="form-control @error('type_id') is-invalid @enderror" required autofocus>
+                                                <option value="">--Select type/course--</option>                               
+                                            </select>
+                                            @error('type_id')
                                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror
                                         </div>
@@ -80,4 +89,25 @@
         </div>
     </section>
     <!--Content End-->
+    {{-- include loader --}}
+    <style>#overlay .loader{display: none}</style>
+    @include('admin.includes.loader')
+    <script>
+          $('#classId').change(function(){
+                // alert("Hi");
+                var classId = $(this).val();
+                if(classId){
+                     // show loader when call ajax
+                       $("#overlay" .loader).show();
+                      $.get("{{ route('class-wise-student-type') }}",{class_id:classId}, function(data){
+                             // hide loader after call the route
+                         $("#overlay" .loader).hide();
+                         //   console.log(data);
+                            $('#typeId').empty().html(data);
+                      });
+                }else{                                          
+                    $('#typeId').empty().html('<option value="">--Select type/course--</option> ');
+                }
+          })
+    </script>
 @endsection

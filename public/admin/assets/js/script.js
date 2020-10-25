@@ -89,3 +89,14 @@ function showImage(data, imgId){
     }
 }
 //Image Show Before Upload End
+
+//Loader javaScript Code start
+
+var overlay = document.getElementById("overlay");
+
+window.addEventListener('load', function(){
+
+    overlay.style.display = 'none';
+
+});
+//Loader javaScript Code end

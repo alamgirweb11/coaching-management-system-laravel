@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateBatchesTable extends Migration
+class CreateStudentTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class UpdateBatchesTable extends Migration
      */
     public function up()
     {
-        Schema::table('batches', function (Blueprint $table) {
-            $table->integer('student_capacity')->after('batch_name');
+        Schema::create('student_types', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('class_id');
+            $table->string('student_type');
+            $table->tinyInteger('status');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +29,6 @@ class UpdateBatchesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('student_types');
     }
 }

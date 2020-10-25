@@ -113,6 +113,8 @@
                         </ul>
                     </li>
 
+                    <li><a href="{{ route('student-type')}}" class="dropdown-item">Student Type</a></li>
+
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">Slider</a>
                         <ul class="dropdown-menu">

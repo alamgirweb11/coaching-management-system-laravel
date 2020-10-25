@@ -149,10 +149,12 @@ Route::get('/school/add',[
     'uses'=>'SchoolManagementController@addSchoolForm',
     'as'=>'add-school'
 ]);
+
 Route::post('/school/save',[
     'uses'=>'SchoolManagementController@schoolSave',
     'as'=>'school-save'
 ]);
+
 Route::get('/school/list',[
     'uses'=>'SchoolManagementController@schoolList',
     'as'=>'school-list'
@@ -161,10 +163,12 @@ Route::get('/school/unpublished/{id}',[
     'uses'=>'SchoolManagementController@schoolUnpublished',
     'as'=>'school-unpublished'
 ]);
+
 Route::get('/school/published/{id}',[
     'uses'=>'SchoolManagementController@schoolPublished',
     'as'=>'school-published'
 ]);
+
 Route::get('/school/edit/{id}',[
     'uses'=>'SchoolManagementController@schoolEditForm',
     'as'=>'school-edit'
@@ -173,6 +177,7 @@ Route::post('/school/update',[
     'uses'=>'SchoolManagementController@schoolUpdate',
     'as'=>'school-update'
 ]);
+
 Route::get('/school/delete/{id}',[
     'uses'=>'SchoolManagementController@schoolDelete',
     'as'=>'school-delete'
@@ -185,14 +190,17 @@ Route::get('/add/class',[
     'uses'=>'ClassManagementController@addClassForm',
     'as'=>'add-class'
 ]);
+
 Route::post('/save/class',[
     'uses'=>'ClassManagementController@saveClass',
     'as'=>'save-class'
 ]);
+
 Route::get('/class/list',[
     'uses'=>'ClassManagementController@classListForm',
     'as'=>'class-list'
 ]);
+
 Route::get('/class/unpublished/{id}',[
     'uses'=>'ClassManagementController@classUnpublished',
     'as'=>'class-unpublished'
@@ -201,14 +209,17 @@ Route::get('/class/published/{id}',[
     'uses'=>'ClassManagementController@classPublished',
     'as'=>'class-published'
 ]);
+
 Route::get('/class/edit/{id}',[
     'uses'=>'ClassManagementController@classEditForm',
     'as'=>'class-edit'
 ]);
+
 Route::post('/class/update',[
     'uses'=>'ClassManagementController@classUpdate',
     'as'=>'class-update'
 ]);
+
 Route::get('/class/delete/{id}',[
     'uses'=>'ClassManagementController@classDelete',
     'as'=>'class-delete'
@@ -221,40 +232,86 @@ Route::get('/add/batch',[
     'uses'=>'BatchManagementController@addBatch',
     'as'=>'add-batch'
 ]);
+
+Route::get('/class-wise-student-type',[
+    'uses'=>'BatchManagementController@classWiseStudentType',
+    'as'=>'class-wise-student-type'
+]);
+
 Route::post('/save/batch',[
     'uses'=>'BatchManagementController@batchSave',
     'as'=>'batch-save'
 ]);
+
 Route::get('/batch/list',[
     'uses'=>'BatchManagementController@batchList',
     'as'=>'batch-list'
 ]);
+
 Route::get('/batch/list-by-ajax',[
     'uses'=>'BatchManagementController@batchListByAjax',
     'as'=>'batch-list-by-ajax'
 ]);
+
 Route::get('/batch/unpublished',[
     'uses'=>'BatchManagementController@batchUnpublished',
     'as'=>'batch-unpublished'
 ]);
+
 Route::get('/batch/published',[
     'uses'=>'BatchManagementController@batchPublished',
     'as'=>'batch-published'
 ]);
+
 Route::get('/batch/delete',[
     'uses'=>'BatchManagementController@batchDelete',
     'as'=>'batch-delete'
 ]);
+
 Route::get('/batch/edit/{id}',[
     'uses'=>'BatchManagementController@batchEdit',
     'as'=>'batch-edit'
 ]);
+
 Route::post('/batch/update',[
     'uses'=>'BatchManagementController@batchUpdate',
     'as'=>'batch-update'
 ]);
 
 // batch management end
+
+
+// student type management start
+Route::get('/student-type',[
+        'uses' =>'StudentTypeController@index',
+        'as' =>'student-type'
+]);
+Route::post('/student-type-add',[
+        'uses' =>'StudentTypeController@studentTypeAdd',
+        'as' =>'student-type-add'
+]);
+Route::get('/student-type-list',[
+        'uses' =>'StudentTypeController@studentTypeList',
+        'as' =>'student-type-list'
+]);
+Route::get('/student-type-unpublish',[
+        'uses' =>'StudentTypeController@studentTypeUnpublish',
+        'as' =>'student-type-unpublish'
+]);
+Route::get('/student-type-publish',[
+        'uses' =>'StudentTypeController@studentTypePublish',
+        'as' =>'student-type-publish'
+]);
+Route::post('/student-type-update',[
+        'uses' =>'StudentTypeController@studentTypeUpdate',
+        'as' =>'student-type-update'
+]);
+Route::get('/student-type-delete',[
+        'uses' =>'StudentTypeController@studentTypeDelete',
+        'as' =>'student-type-delete'
+]);
+
+// student type management end
 });
 Auth::routes(['register' => false]
 );
