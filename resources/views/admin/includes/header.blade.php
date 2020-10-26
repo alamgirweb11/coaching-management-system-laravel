@@ -74,7 +74,7 @@
                     Student
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li class=""><a class="dropdown-item" href="form.html">Registration</a></li>
+                <li class=""><a class="dropdown-item" href="{{ route('student-registration-form')}}">Registration</a></li>
                     <li class=""><a class="dropdown-item" href="table.html">Batch Wise List</a></li>
                     <li class=""><a class="dropdown-item" href="#">Class Wise List</a></li>
                 </ul>

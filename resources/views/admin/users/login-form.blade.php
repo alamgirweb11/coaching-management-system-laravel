@@ -40,7 +40,7 @@
                 </div> --}}
                 <div class="form-group col-12 mb-3">
                     <label for="mobile" class="col-sm-3 col-form-label text-right">{{ __('Mobile Number') }}</label>
-                    <input id="mobile" type="mobile" class="col-sm-9 form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" placeholder="Mobile Number" required autofocus>
+                    <input id="mobile" type="mobile" class="col-sm-9 form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" placeholder="Mobile Number" required>
                     @error('mobile')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

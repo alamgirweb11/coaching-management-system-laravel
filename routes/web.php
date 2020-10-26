@@ -286,18 +286,22 @@ Route::get('/student-type',[
         'uses' =>'StudentTypeController@index',
         'as' =>'student-type'
 ]);
+
 Route::post('/student-type-add',[
         'uses' =>'StudentTypeController@studentTypeAdd',
         'as' =>'student-type-add'
 ]);
+
 Route::get('/student-type-list',[
         'uses' =>'StudentTypeController@studentTypeList',
         'as' =>'student-type-list'
 ]);
+
 Route::get('/student-type-unpublish',[
         'uses' =>'StudentTypeController@studentTypeUnpublish',
         'as' =>'student-type-unpublish'
 ]);
+
 Route::get('/student-type-publish',[
         'uses' =>'StudentTypeController@studentTypePublish',
         'as' =>'student-type-publish'
@@ -306,12 +310,35 @@ Route::post('/student-type-update',[
         'uses' =>'StudentTypeController@studentTypeUpdate',
         'as' =>'student-type-update'
 ]);
+
 Route::get('/student-type-delete',[
         'uses' =>'StudentTypeController@studentTypeDelete',
         'as' =>'student-type-delete'
 ]);
 
 // student type management end
+// student registration management start
+Route::get('/student-registration-form',[
+    'uses' =>'StudentRegistrationController@studentRegistrationForm',
+    'as' =>'student-registration-form'
+]);
+
+Route::get('/bring-student-type',[
+    'uses' =>'StudentRegistrationController@bringStudentType',
+    'as' =>'bring-student-type'
+]);
+
+Route::get('/batch-roll-form',[
+    'uses' =>'StudentRegistrationController@batchRollForm',
+    'as' =>'batch-roll-form'
+]);
+
+Route::post('/student-registration-form',[
+    'uses' =>'StudentRegistrationController@studentSave',
+    'as' =>'student-save'
+]);
+
+// student registration management end
 });
 Auth::routes(['register' => false]
 );
