@@ -10,6 +10,7 @@ use App\StudentType;
 use App\StudentTypeDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentRegistrationController extends Controller
@@ -80,4 +81,50 @@ class StudentRegistrationController extends Controller
             }
           return back()->with('message','Registration Successful.');
      }
+     public function allRunningStudentList(){
+             $students = DB::table('students')
+             ->join('schools','students.school_id','=','schools.id')
+             ->join('class_names','students.class_id','=','class_names.id')
+             ->select('students.*','schools.school_name','class_names.class_name')
+             ->where([
+                    'students.status' =>1 
+             ])->orderBy('students.class_id','ASC')->get();
+           //  return $students;   
+           return view('admin.student.all-running-students',[
+                   'students' => $students
+           ]);
+     }
+     public function classSelectionForm(){
+           $classes = ClassName::where('status','=',1)->get();
+             return view('admin.student.class.class-selection-form',[
+                      'classes' => $classes
+             ]);
+     }
+     public function classWiseStudentType(Request $request){
+                  $classId = $request->class_id;
+                  $types = StudentType::where([
+                          'class_id' => $classId,
+                          'status' => 1
+                  ])->get();
+            return view('admin.student.class.student-type',[
+                       'types' => $types
+            ]);
+     }
+     public function classAdnTypeWiseStudent(Request $request){
+               $students = DB::table('students')
+               ->join('schools','students.school_id','=','schools.id')
+               ->join('student_type_details','student_type_details.student_id','=','students.id')
+               ->join('batches','student_type_details.batch_id','=','batches.id')
+               ->select('students.*','schools.school_name','student_type_details.roll_no','batches.batch_name')
+               ->where([
+                     'students.status' => 1,
+                     'students.class_id'=>$request->class_id,
+                     'student_type_details.type_id' => $request->type_id,
+                     'student_type_details.type_status' =>1
+               ])->orderBy('student_type_details.roll_no','ASC')->get();
+                //  return $students;
+                return view('admin.student.class.student-list',[
+                      'students' => $students
+                ]);
+            }
 }

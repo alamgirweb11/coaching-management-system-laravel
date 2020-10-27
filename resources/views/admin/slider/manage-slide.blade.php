@@ -4,24 +4,7 @@
 <section class="container-fluid">
     <div class="row content">
         <div class="col-12 pl-0 pr-0">
-            @if (Session::get('message'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-               <strong>Message : </strong> {{Session::get('message')}}
-               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-            @endif
-            
-            @if (Session::get('error_message'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-               <strong>Message : </strong> {{Session::get('error_message')}}
-               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-            @endif
-
+                @include('admin.includes.alert')
             <div class="form-group">
                 <div class="col-sm-12">
                     <h4 class="text-center font-weight-bold font-italic mt-3">Slide List</h4>

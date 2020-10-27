@@ -43,7 +43,6 @@
                                             <div class="col-sm-9">
                                                  <select name="type_id" id="typeId" class="form-control @error('type_id') is-invalid @enderror" required autofocus>
                                                     <option value="">--Select Cours--</option>
-                                                
                                                  </select>
                                                 @error('type_id')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -62,8 +61,11 @@
                 </div>
         </div>
     </section>
-    <style>#overlay .loader{display: none}</style>
     @include('admin.includes.loader')
+    <style>
+       #overlay .loader{display: none}
+    </style>
+
     <!--Content End-->
     {{-- jquery ajax srcipt for change classId  --}}
     <script>
@@ -73,10 +75,10 @@
                 var classId = $(this).val();
                 if(classId){
                      // show loader when call ajax
-                       $("#overlay" .loader).show();
+                       $("#overlay .loader").show();
                       $.get("{{ route('class-wise-student-type') }}",{class_id:classId}, function(data){
                              // hide loader after call the route
-                         $("#overlay" .loader).hide();
+                         $("#overlay .loader").hide();
                         //  console.log(data);
                             $('#typeId').empty().html(data);
                       });
@@ -92,14 +94,14 @@
         var classId = $("#classId").val();
         //console.log(id)
         if (classId && studentTypeId) {
-            $("#overlay" .loader).show();
+            $("#overlay .loader").show();
             $.get("{{ route('batch-list-by-ajax')}}", {
                 class_id : classId,
                 type_id :studentTypeId   
             }, function(data) {
-                $("#overlay" .loader).hide();
                // console.log(data);
-                $("#batchList").html(data);
+               $("#overlay .loader").hide();
+                $("#batchList").empty().html(data);
             })
         }else{
               $("#batchList").empty();

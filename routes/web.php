@@ -333,9 +333,28 @@ Route::get('/batch-roll-form',[
     'as' =>'batch-roll-form'
 ]);
 
-Route::post('/student-registration-form',[
+Route::post('/student/registration-form',[
     'uses' =>'StudentRegistrationController@studentSave',
     'as' =>'student-save'
+]);
+Route::get('/student/all-running-student-list',[
+    'uses' =>'StudentRegistrationController@allRunningStudentList',
+    'as' =>'all-running-student-list'
+]);
+
+Route::get('/student/class-selection-form',[
+    'uses' =>'StudentRegistrationController@classSelectionForm',
+    'as' =>'class-selection-form'
+]);
+
+Route::get('/student/class-wise-student-type',[
+    'uses' =>'StudentRegistrationController@classWiseStudentType',
+    'as' =>'class-wise-student-type'
+]);
+
+Route::get('/student/class-and-type-wise-student',[
+    'uses' =>'StudentRegistrationController@classAdnTypeWiseStudent',
+    'as' =>'class-and-type-wise-student'
 ]);
 
 // student registration management end
