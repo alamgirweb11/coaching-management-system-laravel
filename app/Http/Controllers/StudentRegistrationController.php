@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Image;
 
 class StudentRegistrationController extends Controller
 {
@@ -94,6 +95,7 @@ class StudentRegistrationController extends Controller
                    'students' => $students
            ]);
      }
+      // class wise student section
      public function classSelectionForm(){
            $classes = ClassName::where('status','=',1)->get();
              return view('admin.student.class.class-selection-form',[
@@ -127,4 +129,103 @@ class StudentRegistrationController extends Controller
                       'students' => $students
                 ]);
             }
+      // update student profile sction 
+      public function studentProfile($id){
+      $students = $this->getSingleStudent($id);
+      $schools = School::all();
+             // return $students;
+           return view('admin.student.profile.student-profile',[
+                  'students' => $students,
+                  'schools' => $schools
+             ]);
+      }
+      public function studentBasicInfoUpdate(Request $request){
+              $student = Student::find($request->student_id);
+            $student->student_name = $request->student_name;
+            $student->school_id = $request->school_id;
+            $student->father_name = $request->father_name;
+            $student->father_profession = $request->father_profession;
+            $student->father_mobile = $request->father_mobile;
+            $student->mother_name = $request->mother_name;
+            $student->mother_profession = $request->mother_profession;
+            $student->mother_mobile = $request->mother_mobile;
+            $student->email_address = $request->email_address;
+            $student->sms_mobile = $request->sms_mobile;
+            if(isset($request->student_photo)){
+                  $this->updateStudentPhoto($request);
+            }
+            $student->address = $request->address;
+            $student->user_id = $request->user_id;
+            $student->password = $request->sms_mobile;
+            $student->save();
+            return $this->studentProfile($request->student_id);
+      }
+// iamge upload function
+   protected function updateStudentPhoto($request){
+                 $student = Student::find($request->student_id);
+                 if(isset($student->student_photo)){
+                       unlink($student->student_photo);
+                       $this->uploadPhoto($request,$student);
+                 }else{
+                      $this->uploadPhoto($request,$student);   
+                 }
+   }
+   protected function uploadPhoto($request,$student){
+           $file = $request->file('student_photo');
+           $imageName = $file->getClientOriginalName();
+           $directory = 'admin/assets/images/students/';
+           $imageUrl = $directory.$imageName;
+           Image::make($file)->resize(300,300)->save($imageUrl);
+           $student->student_photo = $imageUrl;
+           $student->save();
+   }
+      protected function getSingleStudent($id){
+            $students = DB::table('students')
+            ->join('schools','students.school_id','=','schools.id')
+            ->join('class_names','students.id','=','class_names.id')
+            ->join('student_type_details','student_type_details.student_id','=','students.id')
+            ->join('student_types','student_type_details.type_id','=','student_types.id')
+            ->join('batches','student_type_details.batch_id','=','batches.id')
+            ->select('students.*','schools.school_name','student_type_details.roll_no','batches.batch_name','student_types.student_type','class_names.class_name')
+            ->where([
+                  'students.status' => 1,
+                  'students.id' => $id
+            ])->orderBy('student_type_details.type_id','ASC')->get();
+            return $students;
+      }
+      // batch wise student section
+      public function batchSelectionForm(){
+                 $classes = ClassName::where('status','=',1)->get();
+               return view('admin.student.batch.batch-selection-form',[
+                       'classes' => $classes
+               ]);
+      }
+      public function classAndTypeWiseBatchList(Request $request){
+              $batches = Batch::where([
+                    'class_id' => $request->class_id,
+                    'student_type_id' => $request->type_id,
+                    'status' => 1
+              ])->get();
+              return view('admin.student.batch.batch-list',[
+                       'batches' => $batches
+              ]);
+      }
+      public function batchWiseStudentList(Request $request){
+            $students = DB::table('students')
+            ->join('schools','students.school_id','=','schools.id')
+            ->join('student_type_details','student_type_details.student_id','=','students.id')
+            ->join('batches','student_type_details.batch_id','=','batches.id')
+            ->select('students.*','schools.school_name','student_type_details.roll_no','batches.batch_name')
+            ->where([
+                  'students.status' => 1,
+                  'students.class_id'=>$request->class_id,
+                  'student_type_details.type_id' => $request->type_id,
+                  'student_type_details.batch_id' => $request->batch_id,
+                  'student_type_details.type_status' =>1
+            ])->orderBy('student_type_details.roll_no','ASC')->get();
+             //  return $students;
+             return view('admin.student.batch.student-list',[
+                   'students' => $students
+             ]);
+      }
 }

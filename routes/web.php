@@ -341,7 +341,7 @@ Route::get('/student/all-running-student-list',[
     'uses' =>'StudentRegistrationController@allRunningStudentList',
     'as' =>'all-running-student-list'
 ]);
-
+// class wise student list section
 Route::get('/student/class-selection-form',[
     'uses' =>'StudentRegistrationController@classSelectionForm',
     'as' =>'class-selection-form'
@@ -355,6 +355,32 @@ Route::get('/student/class-wise-student-type',[
 Route::get('/student/class-and-type-wise-student',[
     'uses' =>'StudentRegistrationController@classAdnTypeWiseStudent',
     'as' =>'class-and-type-wise-student'
+]);
+
+// student profile section
+Route::get('/student/profile/{id}',[
+    'uses' =>'StudentRegistrationController@studentProfile',
+    'as' =>'student-profile'
+]);
+
+Route::post('/student/basic-info-update',[
+    'uses' =>'StudentRegistrationController@studentBasicInfoUpdate',
+    'as' =>'student-basic-info-update'
+]);
+// batch wise student list section
+Route::get('/student/batch-selection-form',[
+    'uses' =>'StudentRegistrationController@batchSelectionForm',
+    'as' =>'batch-selection-form'
+]);
+
+Route::get('/student/class-and-type-wise-batch-list',[
+    'uses' =>'StudentRegistrationController@classAndTypeWiseBatchList',
+    'as' =>'class-and-type-wise-batch-list'
+]);
+
+Route::get('/student/batch-wise-student-list',[
+    'uses' =>'StudentRegistrationController@batchWiseStudentList',
+    'as' =>'batch-wise-student-list'
 ]);
 
 // student registration management end

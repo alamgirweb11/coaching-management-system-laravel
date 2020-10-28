@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('main-content')
 <section class="container-fluid">
-    <div class="row content">>
+    <div class="row content">
     <div class="col-12 pl-0 pr-0">
             @include('admin.includes.alert')
         <div class="form-group">
@@ -41,8 +41,9 @@
                             <td>{{ $student->sms_mobile}}</td>
                             <td>{{ $student->id}}</td>
                             <td>
-                                  <a href="" class="btn btn-info btn-sm fa fa-edit"></a>
-                                  <a href="" onclick="return confirm('If you want to delete this item Press OK')" class="btn btn-danger btn-sm fa fa-trash-alt"></a>
+                                  <a href="{{ route('student-profile',['id'=>$student->id])}}" target="_blank" class="btn btn-success btn-sm fa fa-eye" title="Profile"></a>
+                                  <a href="" class="btn btn-info btn-sm fa fa-edit" title="Edit"></a>
+                                  <a href="" onclick="return confirm('If you want to delete this item Press OK')" class="btn btn-danger btn-sm fa fa-trash-alt" title="Delete"></a>
                             </td>
                       </tr>
                    @endforeach

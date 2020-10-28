@@ -4,7 +4,6 @@
         <tr>
             <th>Sl.</th>
             <th>Name</th>
-            <th>Batch</th>
             <th>Roll</th>
             <th>School</th>
             <th>Father's Name</th>
@@ -22,7 +21,6 @@
               <tr>
                     <td>{{ $i++ }}</td>
                     <td>{{ $student->student_name }}</td>
-                    <td>{{ $student->batch_name}}</td>
                     <td>{{ $student->roll_no}}</td>
                     <td>{{ $student->school_name}}</td>
                     <td>{{ $student->father_name}}</td>

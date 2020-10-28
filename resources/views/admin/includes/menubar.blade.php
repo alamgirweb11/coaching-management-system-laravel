@@ -18,6 +18,7 @@
                 <li class=""><a class="dropdown-item" href="{{ route('student-registration-form')}}">Registration</a></li>
                 <li class=""><a class="dropdown-item" href="{{ route('all-running-student-list') }}">All Running Student List</a></li>
                 <li class=""><a class="dropdown-item" href="{{ route('class-selection-form') }}">Class Wise List</a></li>
+                <li class=""><a class="dropdown-item" href="{{ route('batch-selection-form') }}">Batch Wise List</a></li>
                 </ul>
             </li>
 

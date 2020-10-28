@@ -101,9 +101,7 @@ class UserRegistrationController extends Controller
     }
 // photo upload function
     public function updateUserPhoto(Request $request){
-
-          $user = User::find($request->user_id);
-          
+          $user = User::find($request->user_id); 
           $file = $request->file('avatar');
           $imageName = $file->getClientOriginalName(); // getClientOrginalName is a built function 
           $directory = 'admin/assets/avatar/'; // file path
@@ -115,7 +113,6 @@ class UserRegistrationController extends Controller
           $user->avatar = $imageUrl;
           $user->save();
           return redirect("/user-profile/$request->user_id")->with('message','Image Uplaod Successfully.');
-
     }
     public function changeUserPassword($id){
            $user = User::find($id);
