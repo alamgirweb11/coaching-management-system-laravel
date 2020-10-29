@@ -22,6 +22,19 @@
                 </ul>
             </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Student Attendance
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li class=""><a class="dropdown-item" href="{{ route('add-attendance')}}">Add Attendance</a></li>
+                <li class=""><a class="dropdown-item" href="{{ route('view-attendance')}}">View Attendance</a></li>
+                <li class=""><a class="dropdown-item" href="{{ route('edit-attendance')}}">Edit Attendance</a></li>
+                </ul>
+            </li>
+
+
+
             <li class="nav-item">
                 <a class="nav-link" href="{{route('photo-gallery')}}">Gallery</a>
             </li>
@@ -90,7 +103,12 @@
                         </ul>
                     </li>
 
-
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Date</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('add-year') }}" class="dropdown-item">Add Year</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
             </li>

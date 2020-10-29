@@ -384,6 +384,58 @@ Route::get('/student/batch-wise-student-list',[
 ]);
 
 // student registration management end
+
+// student attendance section start
+Route::get('/attendance/add-attendance',[
+    'uses' =>'StudentAttendanceController@batchSelectionFormForAttendanceAdd',
+    'as' =>'add-attendance'
+]);
+
+Route::get('/attendance/batch-wise-student-list-for-attendance',[
+    'uses' =>'StudentAttendanceController@batchWiseStudentListForAttendance',
+    'as' =>'batch-wise-student-list-for-attendance'
+]);
+
+Route::post('/attendance/add-attendance',[
+    'uses' =>'StudentAttendanceController@saveStudentAttendance',
+    'as' =>'save-student-attendance'
+]);
+
+Route::get('/attendance/view',[
+    'uses' =>'StudentAttendanceController@viewAttendance',
+    'as' =>'view-attendance'
+]);
+
+Route::get('/attendance/batch-wise-student-attendance-view',[
+    'uses' =>'StudentAttendanceController@batchWiseStudentAttendanceView',
+    'as' =>'batch-wise-student-attendance-view'
+]);
+
+Route::get('/attendance/edit',[
+    'uses' =>'StudentAttendanceController@editAttendance',
+    'as' =>'edit-attendance'
+]);
+
+Route::get('/attendance/student-list-for-attendance-edit',[
+    'uses' =>'StudentAttendanceController@studentListForAttendanceEdit',
+    'as' =>'student-list-for-attendance-edit'
+]);
+
+Route::post('/attendance/edit',[
+    'uses' =>'StudentAttendanceController@studentAttendanceUpdate',
+    'as' =>'student-attendance-update'
+]);
+
+
+// student attendance section end
+
+// date management section start
+Route::get('/date/add-year',[
+    'uses' =>'DateManagementController@addYear',
+    'as' =>'add-year'
+]);
+// date management section end
+
 });
 Auth::routes(['register' => false]
 );

@@ -3,7 +3,7 @@
     <div class="row footer">
         <div class="col-12">
         <p class="pt-2 mb-2 text-center">Copyright &copy; <a class="footer-link" href="">@if(isset($footer)){{$footer->copyright}}@else Owner @endif</a> || Developed  by:
-                <a class="footer-link" href="https://github.com/alamgirweb11">Alamgir Hosen</a></p> 
+                <a class="footer-link" href="https://github.com/alamgirweb11">Alamgir Hosen</a>
         </div>
     </div>
 </footer>
