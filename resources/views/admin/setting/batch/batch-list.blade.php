@@ -1,5 +1,3 @@
-{{-- slide-add-form --}}
-
 @extends('admin.master')
 @section('main-content')
     <!--Content Start-->

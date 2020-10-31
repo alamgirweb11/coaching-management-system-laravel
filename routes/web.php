@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.pages.home');
 });
 Route::group(['middleware'=>['auth']],function(){
 // registration and login section start
@@ -436,6 +436,38 @@ Route::get('/date/add-year',[
 ]);
 // date management section end
 
+// exam management section start
+Route::get('/exam/add',[
+    'uses' =>'ExamManagementController@addExamForm',
+    'as' =>'add-exam'
+]);
+
+Route::post('/exam/add',[
+    'uses' =>'ExamManagementController@addExam',
+    'as' =>'add-exam'
+]);
+
+Route::get('/exam/list',[
+    'uses' =>'ExamManagementController@examList',
+    'as' =>'exam-list'
+]);
+
+Route::get('/exam-list/by-ajax',[
+    'uses' =>'ExamManagementController@examListByAjax',
+    'as' =>'exam-list-by-ajax'
+]);
+
+Route::get('/exam/deactivate',[
+    'uses' =>'ExamManagementController@examDeactivate',
+    'as' =>'exam-deactivate'
+]);
+
+Route::get('/exam/activate',[
+    'uses' =>'ExamManagementController@examActivate',
+    'as' =>'exam-activate'
+]);
+
+// exam management section end
 });
 Auth::routes(['register' => false]
 );

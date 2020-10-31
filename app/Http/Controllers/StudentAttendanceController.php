@@ -94,10 +94,8 @@ class StudentAttendanceController extends Controller
     public function batchWiseStudentAttendanceView(Request $request){
         $date = $request->date;
        // return $request;
-         // use attendance check function
        $check = $this->attendanceCheck($request,$date);
         if(count($check)>0){
-              // use get attendance function
              $attendances = $this->getAttendance($request,$date);
              return view('admin.student.attendance.batch-wise-attendance',[
                 'attendances'=>$attendances
@@ -117,10 +115,8 @@ class StudentAttendanceController extends Controller
     }
     public function studentListForAttendanceEdit(Request $request){
         $date = date('Y-m-d');
-          // use attendance check function
       $check = $this->attendanceCheck($request,$date);
         if(count($check)>0){
-             // use get attendance protected function
             $attendances = $this->getAttendance($request,$date);
             return view('admin.student.attendance.attendance-update-form',[
                  'attendances' => $attendances
@@ -143,7 +139,6 @@ class StudentAttendanceController extends Controller
             }
             return back()->with('message','Attendance updated successfully');
     }
-    // attendance check function
     protected function attendanceCheck($request,$date){
         $check = StudentAttendance::where([
             'class_id' => $request->class_id,
@@ -152,7 +147,6 @@ class StudentAttendanceController extends Controller
       ])->whereDate('created_at',$date)->get();
        return $check;
     }
-    // get attendance protected function
     protected function getAttendance($request,$date){
         $attendances = DB::table('student_attendances')
         ->join('students','student_attendances.student_id','=','students.id')
